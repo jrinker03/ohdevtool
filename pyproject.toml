@@ -1,0 +1,11 @@
+[project]
+name = "ohdevtool"
+version = "0.0.1"
+dependencies = [
+    "esphome",
+    "platformio",
+]
+
+[project.scripts]
+ohdevtool = "ohdevtool.__main__:main"
+odt = "ohdevtool.__main__:main"
