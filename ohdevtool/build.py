@@ -18,6 +18,10 @@ def modify_platformio_ini(build_path):
     # See https://registry.platformio.org/platforms/platformio/espressif32 for the latest platform package version
     data = data.replace(substring_to_remove, "platform = platformio/espressif32@^6.10.0")
 
+    # Append native platform for testing.
+    if not "[env:native]" in data:
+        data += "\n[env:native]\nplatform = native\n"
+
     with open(file, 'w') as f:
         f.write(data)
 
@@ -55,3 +59,18 @@ def build(args):
     # Step 4: Run platformio to build the project
     os.chdir(CORE.build_path)
     os.system("platformio run --environment " + CORE.name)
+
+def test(args):
+    print(f"Testing {args.configuration}")
+
+    # Run similar steps as build, but run the unit tests instead of building the project
+    if(args.forcegenerate):
+        print("Generating source files.")
+        if(runEsphomeGenerate(args.configuration)!=0):
+            exit(1)
+
+    CORE = getCoreFromConfig(args.configuration)
+    modify_platformio_ini(CORE.build_path)
+
+    os.chdir(CORE.build_path)
+    os.system("platformio test --environment native")

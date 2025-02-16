@@ -1,6 +1,6 @@
 import sys
 import argparse
-from ohdevtool.build import build
+from ohdevtool.build import build, test
 
 def parse_args(argv):
     parser = argparse.ArgumentParser(description='OpenHouse Development Tool')
@@ -22,6 +22,7 @@ def parse_args(argv):
 
     parser_test = subparsers.add_parser("test", help="Run the unit tests for the project.")
     parser_test.add_argument("configuration", help="The YAML file for the project.")
+    parser_test.add_argument("--forcegenerate", "-f", action="store_true", help="Force the generation of the source files.")
 
     return parser.parse_args(argv)
 
@@ -30,6 +31,8 @@ def main(argv=None):
 
     if args.command == "build":
         return build(args)
+    elif args.command == "test":
+        return test(args)
     else:
         print(f"Command '{args.command}' not implemented.")
 
