@@ -20,7 +20,7 @@ def modify_platformio_ini(build_path):
 
     # Append native platform for testing.
     if not "[env:native]" in data:
-        data += "\n[env:native]\nplatform = native\n"
+        data += "\n[env:native]\nplatform = native\nbuild_flags = --std=gnu++17\n"
 
     with open(file, 'w') as f:
         f.write(data)

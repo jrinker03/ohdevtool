@@ -15,13 +15,13 @@ Any installation will add both the main package in `site-packages` as well as th
 
 ## Usage examples
 
-Taking advantage of the console scripts, you can use esphome to generate the source files, modify it for PlatformIO and kick off the PIO build for the project in the YAML:
-`ohdevtool build <YAML file>`
+Taking advantage of the console scripts, you can: 
 
-OR
+- Use esphome to generate the source files, modify it for PlatformIO and kick off the PIO build for the project in the YAML:
+    `ohdevtool build <YAML file>`
 
-Run the unit tests for the project in the YAML:
-`odt test <YAML file>`
+- Run the unit tests for the project in the YAML:
+    `odt test <YAML file>`
 
 ## License
 
