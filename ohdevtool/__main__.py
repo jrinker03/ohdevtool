@@ -10,6 +10,7 @@ def parse_args(argv):
 
     parser_compile = subparsers.add_parser("build", help="Invoke the build as indicated by the configuration file.")
     parser_compile.add_argument("configuration", help="The YAML file for the project.")
+    parser_compile.add_argument("--generateonly", "-g", action="store_true", help="Only generate the source files.")
 
     parser_upload = subparsers.add_parser("upload", help="Upload the latest binary as indicated by the configuration file.")
     parser_upload.add_argument("configuration", help="The YAML file for the project.")

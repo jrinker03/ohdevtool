@@ -56,6 +56,11 @@ def build(args):
     if CORE.data['esp32']['variant'] == 'ESP32S3':
         modify_helpers_cpp(CORE.build_path)
 
+    # If the generateonly flag is set, then we can stop here
+    if(args.generateonly):
+        print("Source files generated.")
+        return
+
     # Step 4: Run platformio to build the project
     os.chdir(CORE.build_path)
     os.system("platformio run --environment " + CORE.name)
